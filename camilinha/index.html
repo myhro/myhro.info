@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Camilinha</title>
+        <link rel="stylesheet" type="text/css" href="bootstrap.min.css"/> 
+        <script type="text/javascript" src="jquery.min.js"></script>
+        <script type="text/javascript" src="bootstrap.min.js"></script>
+        <script type="text/javascript" src="moment.min.js"></script>
+    </head>
+    <body>
+        <div class="header">
+            <h3>&nbsp;</h3>
+        </div>
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Camilinha,</h1>
+                <p class="lead">
+                <br/>
+                Estamos há pelo menos <strong class="contagem"></strong> aguardando suas fotos de biquini tiradas na Praia de Copacabana.<br/>
+                Portanto, pedimos que, em um ato de humanidade, você nos faça o favor de publicá-las no Facebook.<br/><br/>
+                Obrigado.
+                </p>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                moment.lang('pt-BR')
+                $('.contagem').append((moment("2013-12-09").fromNow(true)));
+            });
+        </script>
+    </body>
+</html>
