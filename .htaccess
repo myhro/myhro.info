@@ -1,0 +1,4 @@
+RewriteEngine on
+
+RewriteRule ^dl/(.*)$ https://dl.dropboxusercontent.com/u/13017655/$1 [L]
+RewriteRule ^img/(.*)$ https://dl.dropboxusercontent.com/u/13017655/img/$1 [L]
