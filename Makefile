@@ -1,2 +1,2 @@
 deploy:
-	rsync -hrvz --exclude=.git/ --progress . root@alloy.ilieve.org:/var/www/myhro.info/
+	rsync -hrvzP --delete --exclude-from='.rsyncignore' . viridian.ilieve.org:/var/www/myhro.info/
