@@ -1,0 +1,4 @@
+.git/*
+.*ignore
+cf-workers.js
+Makefile
