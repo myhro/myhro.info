@@ -1,4 +1,5 @@
 .git/*
+tests/*
 .*ignore
 cf-workers.js
 Makefile
