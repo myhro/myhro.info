@@ -1,4 +1,13 @@
 ---
-language: bash
-script:
-  - make test
+language: python
+python:
+  - "3.6"
+install:
+  - pip install s3cmd
+jobs:
+  include:
+    - stage: test
+      script: make test
+    - stage: deploy
+      script: make deploy
+      if: branch = master
