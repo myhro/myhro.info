@@ -6,8 +6,13 @@ install:
   - pip install s3cmd
 jobs:
   include:
-    - stage: test
-      script: make test
-    - stage: deploy
-      script: make deploy
+    - stage: deploy-test
+      script: make deploy-test
+    - stage: test-test
+      script: make test-test
+    - stage: deploy-prod
+      script: make deploy-prod
+      if: branch = master
+    - stage: test-prod
+      script: make test-prod
       if: branch = master

@@ -6,7 +6,6 @@ function redirect_url {
 }
 
 function setup {
-    export DOMAIN="myhro.info"
     export BASE_URL="https://$DOMAIN"
 }
 
@@ -25,6 +24,9 @@ function status_code {
 }
 
 @test "www redirects to naked domain" {
+    if [[ "$DOMAIN" != "myhro.info" ]]; then
+        skip "Should only test production domain"
+    fi
     URL="https://www.${DOMAIN}"
     REDIRECT_URL=$(redirect_url "$URL")
     STATUS_CODE=$(status_code "$URL")
