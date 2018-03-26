@@ -38,7 +38,7 @@ async function heroku(request) {
   const n = nouns[randint(nouns.length)]
   const r = randint(9999 - 1000 + 1) + 1000
   const body = [a, n, r]
-  const response = new Response(body.join('-'))
+  const response = new Response(body.join('-') + '\n')
   return response
 }
 
