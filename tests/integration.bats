@@ -69,17 +69,3 @@ function status_code {
     echo "$STATUS_CODE"
     [[ "$STATUS_CODE" = 200 ]]
 }
-
-@test "/ip redirects or returns content" {
-    URL="${BASE_URL}/ip"
-    STATUS_CODE=$(status_code "$URL")
-    echo "$STATUS_CODE"
-    [[ "$STATUS_CODE" = 301 || "$STATUS_CODE" = 200 ]]
-}
-
-@test "/ip/ returns content" {
-    URL="${BASE_URL}/ip/"
-    STATUS_CODE=$(status_code "$URL")
-    echo "$STATUS_CODE"
-    [[ "$STATUS_CODE" = 200 ]]
-}
