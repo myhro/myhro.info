@@ -3,5 +3,4 @@ tests/*
 workers/*
 .*ignore
 .travis.yml
-cf-workers.js
 Makefile
