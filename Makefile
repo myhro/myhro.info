@@ -1,7 +1,7 @@
 WORKERS = $(shell ls workers/)
 
 deploy:
-	@if [[ -z "$(BUCKET)" ]]; then \
+	@if [ -z "$(BUCKET)" ]; then \
 		echo "BUCKET not set"; \
 		exit 1; \
 	fi

@@ -3,15 +3,23 @@ language: python
 python:
   - "3.6"
 install:
+  - nvm install 10
+  - npm install -g @cloudflare/wrangler
   - pip install s3cmd
+before_script:
+  - wrangler config $CLOUDFLARE_EMAIL $CLOUDFLARE_API_KEY
 jobs:
   include:
     - stage: deploy-test
-      script: make deploy-test
+      script:
+        - make deploy-test
+        - make deploy-workers-test
     - stage: test-test
       script: make test-test
     - stage: deploy-prod
-      script: make deploy-prod
+      script:
+        - make deploy-prod
+        - make deploy-workers-prod
       if: branch = master
     - stage: test-prod
       script: make test-prod
