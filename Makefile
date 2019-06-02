@@ -1,9 +1,21 @@
+WORKERS = $(shell ls workers/)
+
 deploy:
 	@if [[ -z "$(BUCKET)" ]]; then \
 		echo "BUCKET not set"; \
 		exit 1; \
 	fi
 	s3cmd sync --exclude-from .syncignore . s3://$(BUCKET)/
+
+deploy-workers-prod:
+	for WRK in $(WORKERS); do \
+		(cd workers/$$WRK && make release) \
+	done
+
+deploy-workers-test:
+	for WRK in $(WORKERS); do \
+		(cd workers/$$WRK && make publish) \
+	done
 
 deploy-prod: BUCKET = myhro.info
 deploy-prod: deploy
