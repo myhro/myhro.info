@@ -1,0 +1,6 @@
+name = "ip"
+type = "javascript"
+zone_id = "dbe71f84a9e980bcfd36c2f2fda5e825"
+private = false
+account_id = "779f26d6062518fa03d78247becfd24c"
+route = "myhro.info/ip*"
