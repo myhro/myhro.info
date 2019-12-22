@@ -1,33 +1,14 @@
-WORKERS = $(shell ls workers/)
+DOMAIN_PROD := myhro.info
+DOMAIN_TEST := test.myhro.info
 
 deploy:
-	@if [ -z "$(BUCKET)" ]; then \
-		echo "BUCKET not set"; \
-		exit 1; \
-	fi
-	s3cmd sync --exclude-from .syncignore . s3://$(BUCKET)/
+	s3cmd sync --exclude-from .syncignore . s3://$(DOMAIN_TEST)/
 
-deploy-workers-prod:
-	for WRK in $(WORKERS); do \
-		(cd workers/$$WRK && make release) \
-	done
-
-deploy-workers-test:
-	for WRK in $(WORKERS); do \
-		(cd workers/$$WRK && make publish) \
-	done
-
-deploy-prod: BUCKET = myhro.info
-deploy-prod: deploy
-
-deploy-test: BUCKET = test.myhro.info
-deploy-test: deploy
+deploy-prod:
+	s3cmd sync --exclude-from .syncignore . s3://$(DOMAIN_PROD)/
 
 test:
-	bats tests/integration.bats
+	DOMAIN=$(DOMAIN_TEST) bats tests/integration.bats
 
-test-prod: export DOMAIN = myhro.info
-test-prod: test
-
-test-test: export DOMAIN = test.myhro.info
-test-test: test
+test-prod:
+	DOMAIN=$(DOMAIN_PROD) bats tests/integration.bats
