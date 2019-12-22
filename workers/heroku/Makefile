@@ -1,8 +1,11 @@
+deploy:
+	npm run wrangler -- publish
+
+deploy-prod:
+	npm run wrangler -- publish --env production
+
+deps:
+	npm ci
+
 preview:
-	wrangler preview
-
-publish:
-	wrangler publish
-
-release:
-	wrangler publish --release
+	npm run wrangler -- preview --watch
