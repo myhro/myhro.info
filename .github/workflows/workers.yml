@@ -17,6 +17,8 @@ jobs:
           make -C heroku/ deploy
           make -C ip/ deps
           make -C ip/ deploy
+          make -C malvados/ deps
+          make -C malvados/ deploy
   deploy-prod:
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     needs: deploy
@@ -35,3 +37,5 @@ jobs:
           make -C heroku/ deploy-prod
           make -C ip/ deps
           make -C ip/ deploy-prod
+          make -C malvados/ deps
+          make -C malvados/ deploy-prod
