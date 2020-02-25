@@ -19,6 +19,8 @@ jobs:
           make -C ip/ deploy
           make -C malvados/ deps
           make -C malvados/ deploy
+          make -C myhro-net/ deps
+          make -C myhro-net/ deploy
   deploy-prod:
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     needs: deploy
@@ -39,3 +41,5 @@ jobs:
           make -C ip/ deploy-prod
           make -C malvados/ deps
           make -C malvados/ deploy-prod
+          make -C myhro-net/ deps
+          make -C myhro-net/ deploy-prod

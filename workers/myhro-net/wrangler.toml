@@ -1,0 +1,9 @@
+account_id = "779f26d6062518fa03d78247becfd24c"
+name = "myhro-net"
+type = "javascript"
+workers_dev = true
+
+[env.production]
+route = "myhro.net"
+workers_dev = false
+zone_id = "61d51546beb0253d7f4c005cb3bf7749"
