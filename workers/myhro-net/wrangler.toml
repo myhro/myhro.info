@@ -4,6 +4,9 @@ type = "javascript"
 workers_dev = true
 
 [env.production]
-route = "myhro.net"
+routes = [
+  "myhro.net",
+  "www.myhro.net",
+]
 workers_dev = false
 zone_id = "61d51546beb0253d7f4c005cb3bf7749"
