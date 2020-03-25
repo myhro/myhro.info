@@ -1,9 +1,10 @@
 account_id = "779f26d6062518fa03d78247becfd24c"
 name = "heroku"
+route = "heroku.myhro.net"
 type = "javascript"
-workers_dev = true
+workers_dev = false
+zone_id = "61d51546beb0253d7f4c005cb3bf7749"
 
 [env.production]
 route = "heroku.myhro.info"
-workers_dev = false
 zone_id = "dbe71f84a9e980bcfd36c2f2fda5e825"

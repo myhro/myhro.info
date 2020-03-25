@@ -37,5 +37,3 @@ jobs:
           make -C heroku/ deploy-prod
           make -C ip/ deps
           make -C ip/ deploy-prod
-          make -C myhro-net/ deps
-          make -C myhro-net/ deploy-prod
