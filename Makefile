@@ -11,3 +11,6 @@ prettier:
 
 serve:
 	npx wrangler pages dev .
+
+yamllint:
+	yamllint --format colored --strict .github/workflows/ .yamllint.yaml
