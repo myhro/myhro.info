@@ -1,8 +1,4 @@
-addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event.request));
-})
-
-async function handleRequest(request) {
+export async function onRequestGet(context) {
   const adjs = [
     "aged", "ancient", "autumn", "billowing", "bitter", "black", "blue", "bold",
     "broken", "cold", "cool", "crimson", "damp", "dark", "dawn", "delicate",

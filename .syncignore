@@ -1,7 +1,0 @@
-.git/*
-.github/*
-tests/*
-workers/*
-.*ignore
-.travis.yml
-Makefile
