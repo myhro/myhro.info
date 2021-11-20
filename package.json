@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "prettier": "^2.4.1",
     "wrangler": "^0.0.0-fsw-beta.5"
   }
 }
