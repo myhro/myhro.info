@@ -1,0 +1,12 @@
+{
+  "env": {
+    "es2017": true,
+    "serviceworker": true
+  },
+  "extends": [
+    "airbnb-base"
+  ],
+  "rules": {
+    "import/prefer-default-export": "off"
+  }
+}
