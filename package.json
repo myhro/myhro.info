@@ -4,6 +4,6 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.3",
     "prettier": "^2.4.1",
-    "wrangler": "^0.0.0-fsw-beta.5"
+    "wrangler": "^2.0.2"
   }
 }
