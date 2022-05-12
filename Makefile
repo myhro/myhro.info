@@ -10,7 +10,7 @@ prettier:
 	npx prettier --write $(PRETTIER_GLOB)
 
 serve:
-	npx wrangler pages dev .
+	BROWSER=none npx wrangler pages dev .
 
 yamllint:
 	yamllint --format colored --strict .github/workflows/ .yamllint.yaml
