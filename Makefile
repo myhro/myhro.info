@@ -1,16 +1,17 @@
-PRETTIER_GLOB := functions/**/*.js
-
 check:
-	npx prettier --check $(PRETTIER_GLOB)
+	npx prettier --check functions/
 
 lint:
-	DEBUG=eslint:cli-engine npx eslint functions/
+	DEBUG=eslint:cli-engine npx eslint --ext .js --ext .ts functions/
 
 prettier:
-	npx prettier --write $(PRETTIER_GLOB)
+	npx prettier --write functions/
 
 serve:
 	BROWSER=none npx wrangler pages dev .
+
+tsc:
+	npx tsc --noEmit
 
 yamllint:
 	yamllint --format colored --strict .github/workflows/ .yamllint.yaml

@@ -6,7 +6,17 @@
   "extends": [
     "airbnb-base"
   ],
+  "parser": "@typescript-eslint/parser",
   "rules": {
+    "import/extensions": [
+      "error",
+      "never"
+    ],
     "import/prefer-default-export": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
   }
 }
