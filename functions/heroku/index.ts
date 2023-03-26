@@ -1,7 +1,7 @@
 import { adjs } from './adjs';
 import { nouns } from './nouns';
 
-function randint(n) {
+function randint(n: number) {
   return Math.floor(Math.random() * n);
 }
 
