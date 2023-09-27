@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clipboard URL Cleaner</title>
+  <style>
+    body,
+    html {
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    p {
+      height: 2em;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <p>
+    <button id="clipboard">Clean URL from Clipboard</button>
+  </p>
+  <p id="output"></p>
+
+  <script>
+    async function cleanURL(rawURL) {
+      const url = new URL(rawURL);
+      url.search = '';
+      return url.toString();
+    }
+
+    async function readClipboard() {
+      const text = await navigator.clipboard.readText();
+      return text.trim();
+    }
+
+    document.getElementById('clipboard').addEventListener('click', async function () {
+      const output = document.getElementById('output');
+
+      if (!navigator.clipboard) {
+        output.textContent = 'Clipboard API not supported on this browser';
+        return;
+      }
+
+      let content = '';
+      try {
+        content = await readClipboard();
+      } catch (error) {
+        console.error('Failed to read clipboard:', error);
+        output.textContent = 'Error reading clipboard';
+        return;
+      }
+
+      if (content == '') {
+        output.textContent = 'Clipboard is empty';
+        return;
+      }
+
+      if (!content.startsWith('http')) {
+        output.textContent = 'URL not found in the clipboard';
+        return;
+      }
+
+      const url = await cleanURL(content);
+      navigator.clipboard.writeText(url);
+      output.textContent = 'Cleaned URL: ' + url;
+      output.innerHTML += '<br><br> Copied to the clipboard'
+    });
+  </script>
+</body>
+
+</html>
