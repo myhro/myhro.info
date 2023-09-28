@@ -37,28 +37,7 @@
       return url.toString();
     }
 
-    async function readClipboard() {
-      const text = await navigator.clipboard.readText();
-      return text.trim();
-    }
-
-    document.getElementById('clipboard').addEventListener('click', async function () {
-      const output = document.getElementById('output');
-
-      if (!navigator.clipboard) {
-        output.textContent = 'Clipboard API not supported on this browser';
-        return;
-      }
-
-      let content = '';
-      try {
-        content = await readClipboard();
-      } catch (error) {
-        console.error('Failed to read clipboard:', error);
-        output.textContent = 'Error reading clipboard';
-        return;
-      }
-
+    async function processClipboard(content) {
       if (content == '') {
         output.textContent = 'Clipboard is empty';
         return;
@@ -73,6 +52,36 @@
       navigator.clipboard.writeText(url);
       output.textContent = 'Cleaned URL: ' + url;
       output.innerHTML += '<br><br> Copied to the clipboard'
+    }
+
+    async function readClipboard() {
+      const text = await navigator.clipboard.readText();
+      return text.trim();
+    }
+
+    document.getElementById('clipboard').addEventListener('click', async function () {
+      const output = document.getElementById('output');
+
+      if (!navigator.clipboard || !navigator.clipboard.readText) {
+        output.textContent = 'Clipboard API not supported on this browser, please use CTRL+V';
+        return;
+      }
+
+      let content = '';
+      try {
+        content = await readClipboard();
+      } catch (error) {
+        console.error('Failed to read clipboard:', error);
+        output.textContent = 'Error reading clipboard';
+        return;
+      }
+
+      await processClipboard(content);
+    });
+
+    document.addEventListener('paste', async function (event) {
+      const content = event.clipboardData.getData('Text');
+      await processClipboard(content);
     });
   </script>
 </body>
