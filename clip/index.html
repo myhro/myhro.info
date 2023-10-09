@@ -33,6 +33,7 @@
   <script>
     async function cleanURL(rawURL) {
       const url = new URL(rawURL);
+      url.hash = '';
       url.search = '';
       return url.toString();
     }
