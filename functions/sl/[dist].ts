@@ -13,7 +13,7 @@ export async function onRequestGet({
 
   switch (params.dist) {
     case 'debian':
-      release = query.get('release') || 'bullseye';
+      release = query.get('release') || 'bookworm';
       body = debian(release);
       break;
     case 'ubuntu':
