@@ -51,7 +51,13 @@
 
       const url = await cleanURL(content);
       navigator.clipboard.writeText(url);
-      output.textContent = 'Cleaned URL: ' + url;
+
+      const link = document.createElement('a');
+      link.href = url;
+      link.textContent = url;
+      link.target = '_blank';
+
+      output.innerHTML = 'Cleaned URL: ' + link.outerHTML;
       output.innerHTML += '<br><br> Copied to the clipboard'
     }
 
