@@ -65,6 +65,31 @@
             const parsedValue = parseInt(pastedData, 10);
             updateOutput(parsedValue);
         });
+
+        function runTests() {
+            const testCases = [
+                { number: 810, human: '810 Bytes' },
+                { number: 4582, human: '4.47 KB' },
+                { number: 26830, human: '26.2 KB' },
+                { number: 473638, human: '462.54 KB' },
+                { number: 5417973, human: '5.17 MB' },
+                { number: 13630656, human: '13 MB' },
+                { number: 84853185, human: '80.92 MB' },
+                { number: 6203355136, human: '5.78 GB' },
+            ];
+
+            testCases.forEach(testCase => {
+                let result = bytesToHumanReadable(testCase.number);
+
+                if (result !== testCase.human) {
+                    console.error(`Test failed for number: ${testCase.number}. Expected: ${testCase.human}, but got: ${result}`);
+                } else {
+                    console.log(`Test passed for number: ${testCase.number}`);
+                }
+            });
+        }
+
+        window.onload = runTests;
     </script>
 </body>
 </html>
