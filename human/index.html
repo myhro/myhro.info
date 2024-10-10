@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Humanize Bytes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            text-align: center;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #333;
+        }
+        #paste-button {
+            padding: 10px;
+            border: 2px solid #aaa;
+            width: 300px;
+            margin: 20px auto;
+            cursor: pointer;
+            background-color: #f0f0f0;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Human-Readable Bytes Conversion</h1>
+    <button id="paste-button">Read number from clipboard</button>
+    <div id="output"></div>
+
+    <script>
+        function bytesToHumanReadable(bytes) {
+            const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+            if (bytes === 0) return "0 Bytes";
+            const i = Math.floor(Math.log(bytes) / Math.log(1024));
+            return parseFloat((bytes / Math.pow(1024, i)).toFixed(2)) + " " + sizes[i];
+        }
+
+        function updateOutput(parsedValue) {
+            const outputElement = document.getElementById("output");
+            if (!isNaN(parsedValue)) {
+                outputElement.textContent = bytesToHumanReadable(parsedValue);
+            } else {
+                outputElement.textContent = "Please paste a valid integer.";
+            }
+        }
+
+        const pasteButton = document.getElementById("paste-button");
+        pasteButton.addEventListener("click", async () => {
+            try {
+                const pastedData = await navigator.clipboard.readText();
+                const parsedValue = parseInt(pastedData, 10);
+                updateOutput(parsedValue);
+            } catch (err) {
+                document.getElementById("output").textContent = "Failed to read clipboard content.";
+            }
+        });
+
+        document.addEventListener("paste", (event) => {
+            event.preventDefault();
+            const pastedData = event.clipboardData.getData("text");
+            const parsedValue = parseInt(pastedData, 10);
+            updateOutput(parsedValue);
+        });
+    </script>
+</body>
+</html>
