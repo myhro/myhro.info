@@ -9,8 +9,7 @@ export async function onRequestGet({
     return new Response('Not Found', { status: 404 });
   }
 
-  const content = await response.text();
-  return new Response(content, {
+  return new Response(response.body, {
     headers: { 'Content-Type': 'text/html' },
   });
 }
