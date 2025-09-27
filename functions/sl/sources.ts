@@ -1,19 +1,21 @@
 export function debian(release: string) {
-  const sources = [
-    'deb https://deb.debian.org/debian/ {RELEASE} main contrib non-free',
-    'deb https://deb.debian.org/debian/ {RELEASE}-updates main contrib non-free',
-    'deb https://deb.debian.org/debian-security/ {RELEASE}-security main contrib non-free',
-  ];
+  const mainSources = [
+    'Types: deb',
+    'URIs: https://deb.debian.org/debian/',
+    `Suites: ${release} ${release}-updates`,
+    'Components: main contrib non-free non-free-firmware',
+    'Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg',
+  ].join('\n');
 
-  return sources
-    .map((source) => {
-      const line = source.replace('{RELEASE}', release);
-      if (release === 'bookworm') {
-        return `${line} non-free-firmware`;
-      }
-      return line;
-    })
-    .join('\n');
+  const securitySources = [
+    'Types: deb',
+    'URIs: https://deb.debian.org/debian-security/',
+    `Suites: ${release}-security`,
+    'Components: main contrib non-free non-free-firmware',
+    'Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg',
+  ].join('\n');
+
+  return `${mainSources}\n\n${securitySources}`;
 }
 
 export function ubuntu(release: string, arch: string, country: string) {
