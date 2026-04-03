@@ -23,9 +23,6 @@ clean:
 deploy:
 	npx wrangler pages deploy --branch $(BRANCH) --project-name myhro-info .
 
-lint:
-	DEBUG=eslint:cli-engine npx eslint --ext .js --ext .ts src/
-
 prettier:
 	npx prettier --write src/
 

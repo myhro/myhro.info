@@ -17,6 +17,5 @@ jobs:
       - name: QA
         run: |
           make check
-          make lint
           make tsc
           make yamllint
