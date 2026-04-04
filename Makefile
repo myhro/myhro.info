@@ -1,5 +1,3 @@
-BRANCH ?= staging
-
 STATIC_ASSETS = \
 	imp/ \
 	404.html \
@@ -20,14 +18,17 @@ build: clean
 clean:
 	rm -rf public/
 
-deploy:
-	npx wrangler pages deploy --branch $(BRANCH) --project-name myhro-info .
+deploy: build
+	npx wrangler deploy
 
 prettier:
 	npx prettier --write src/
 
 serve: build
 	BROWSER=none npx wrangler dev
+
+staging: build
+	npx wrangler versions upload --preview-alias staging
 
 tsc:
 	npx tsc --noEmit
